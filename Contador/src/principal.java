@@ -129,15 +129,18 @@ public class principal extends javax.swing.JFrame {
         iniciarnumeros.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         iniciarnumeros.setText("Iniciar");
         iniciarnumeros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        iniciarnumeros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarnumerosActionPerformed(evt);
+            }
+        });
         getContentPane().add(iniciarnumeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 90, 40));
 
         jLabel4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ingrese un número:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese una letra:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
 
@@ -185,6 +188,25 @@ public class principal extends javax.swing.JFrame {
         letras.start();
     }//GEN-LAST:event_iniciarletrasActionPerformed
 
+    private void iniciarnumerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarnumerosActionPerformed
+        Actualizar mostrar = new Actualizar();
+        mostrar.start();
+    }//GEN-LAST:event_iniciarnumerosActionPerformed
+    
+    public class Actualizar extends Thread{
+       int num = Integer.parseInt(ingresonumero.getText());
+       @Override
+       public void run(){
+            for(int j=num; j< 101; j++){
+                jlabelnumeros.setText(String.valueOf(j));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }     
+            }
+       }
+    }
     public class Hilo extends Thread{
        private String letrasmin=ingresoletra.getText().toLowerCase();
         @Override
